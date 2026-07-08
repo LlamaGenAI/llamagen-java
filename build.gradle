@@ -1,0 +1,59 @@
+plugins {
+    id "java-library"
+    id "maven-publish"
+}
+
+group = "ai.llamagen"
+version = "0.1.0"
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+    withJavadocJar()
+    withSourcesJar()
+}
+
+dependencies {
+    api "com.google.code.gson:gson:2.10.1"
+
+    testImplementation "org.junit.jupiter:junit-jupiter:5.10.3"
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = "UTF-8"
+}
+
+test {
+    useJUnitPlatform()
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            pom {
+                name = "llamagen-java"
+                description = "Java library for the LlamaGen API, including Comic API and Animation API clients."
+                url = "https://github.com/llamagenai/llamagen-java"
+                licenses {
+                    license {
+                        name = "MIT License"
+                        url = "https://opensource.org/licenses/MIT"
+                    }
+                }
+                developers {
+                    developer {
+                        id = "llamagen"
+                        name = "LlamaGen"
+                        email = "support@llamagen.ai"
+                    }
+                }
+                scm {
+                    connection = "scm:git:https://github.com/llamagenai/llamagen-java.git"
+                    developerConnection = "scm:git:ssh://git@github.com/llamagenai/llamagen-java.git"
+                    url = "https://github.com/llamagenai/llamagen-java"
+                }
+            }
+        }
+    }
+}
