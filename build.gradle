@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "ai.llamagen"
-version = "0.1.0"
+version = findProperty("VERSION_NAME") ?: "0.1.0"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
@@ -23,6 +23,16 @@ tasks.withType(JavaCompile).configureEach {
     options.encoding = "UTF-8"
 }
 
+jar {
+    manifest {
+        attributes(
+                "Automatic-Module-Name": "ai.llamagen",
+                "Implementation-Title": "llamagen-java",
+                "Implementation-Version": project.version
+        )
+    }
+}
+
 test {
     useJUnitPlatform()
 }
@@ -34,7 +44,7 @@ publishing {
             pom {
                 name = "llamagen-java"
                 description = "Java library for the LlamaGen API, including Comic API and Animation API clients."
-                url = "https://github.com/llamagenai/llamagen-java"
+                url = "https://github.com/LlamaGenAI/llamagen-java"
                 licenses {
                     license {
                         name = "MIT License"
@@ -49,11 +59,13 @@ publishing {
                     }
                 }
                 scm {
-                    connection = "scm:git:https://github.com/llamagenai/llamagen-java.git"
-                    developerConnection = "scm:git:ssh://git@github.com/llamagenai/llamagen-java.git"
-                    url = "https://github.com/llamagenai/llamagen-java"
+                    connection = "scm:git:https://github.com/LlamaGenAI/llamagen-java.git"
+                    developerConnection = "scm:git:ssh://git@github.com/LlamaGenAI/llamagen-java.git"
+                    url = "https://github.com/LlamaGenAI/llamagen-java"
                 }
             }
         }
     }
 }
+
+apply from: "deploy.gradle"

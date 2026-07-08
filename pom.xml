@@ -10,7 +10,7 @@
 
   <name>llamagen-java</name>
   <description>Java library for the LlamaGen API, including Comic API and Animation API clients.</description>
-  <url>https://github.com/llamagenai/llamagen-java</url>
+  <url>https://github.com/LlamaGenAI/llamagen-java</url>
 
   <licenses>
     <license>
@@ -28,9 +28,9 @@
   </developers>
 
   <scm>
-    <connection>scm:git:https://github.com/llamagenai/llamagen-java.git</connection>
-    <developerConnection>scm:git:ssh://git@github.com/llamagenai/llamagen-java.git</developerConnection>
-    <url>https://github.com/llamagenai/llamagen-java</url>
+    <connection>scm:git:https://github.com/LlamaGenAI/llamagen-java.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/LlamaGenAI/llamagen-java.git</developerConnection>
+    <url>https://github.com/LlamaGenAI/llamagen-java</url>
   </scm>
 
   <properties>
@@ -63,6 +63,44 @@
         <configuration>
           <useModulePath>false</useModulePath>
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.4.2</version>
+        <configuration>
+          <archive>
+            <manifestEntries>
+              <Automatic-Module-Name>ai.llamagen</Automatic-Module-Name>
+            </manifestEntries>
+          </archive>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>3.3.1</version>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <goals>
+              <goal>jar-no-fork</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>3.6.3</version>
+        <executions>
+          <execution>
+            <id>attach-javadocs</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>

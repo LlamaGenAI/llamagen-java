@@ -1,0 +1,18 @@
+publishing {
+    repositories {
+        maven {
+            name = "localBuild"
+            url = layout.buildDirectory.dir("repo")
+        }
+        if (project.hasProperty("mavenCentralUrl")) {
+            maven {
+                name = "mavenCentral"
+                url = uri(project.property("mavenCentralUrl"))
+                credentials {
+                    username = findProperty("mavenCentralUsername") ?: System.getenv("MAVEN_CENTRAL_USERNAME")
+                    password = findProperty("mavenCentralPassword") ?: System.getenv("MAVEN_CENTRAL_PASSWORD")
+                }
+            }
+        }
+    }
+}

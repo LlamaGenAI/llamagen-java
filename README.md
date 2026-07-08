@@ -187,10 +187,12 @@ Supported event names include:
 
 ```bash
 mvn test
-gradle test
+./gradlew test
 ```
 
 This repository keeps the code compatible with Java 8; a local `javac` compile can also be run with Gson on the classpath.
+
+On macOS, if Gradle reports `Could not find tools.jar`, point `JAVA_HOME` to a JDK instead of the legacy browser plugin JRE.
 
 ## Related Packages
 
